@@ -36,7 +36,7 @@ library currency_type;
 ///
 class Currency implements Comparable<Currency> {
   ///
-  /// SCALE is number of zero stored in `Currency`
+  /// Number of zero stored in `Currency`
   ///
   static const SCALE = 4;
 
@@ -46,7 +46,7 @@ class Currency implements Comparable<Currency> {
   static const MULTIPLIER = 10000;
 
   ///
-  /// _value is internal value of the currency and is immutable
+  /// Internal value of the currency and is immutable
   ///
   late final BigInt _value;
 
@@ -65,7 +65,9 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// Create `Currency` from numeric (integer or double) value
+  /// Create `Currency` from numeric (integer or double) [value]
+  ///
+  /// For value bigger than [num] can hold, use [Currency.parse]
   ///
   Currency.from(num value) {
     if (value is int) {
@@ -92,7 +94,9 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// Returns `Currency` from specified string. On format error return 0
+  /// Returns `Currency` from [value] string.
+  ///
+  /// Return 0 when [value] has format error
   ///
   static Currency parse(String value) {
     try {
@@ -103,7 +107,9 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// Returns `Currency` from specified string. On format error return null
+  /// Returns `Currency` from [value] string
+  ///
+  /// Returns null when [value] has format error
   ///
   static Currency? tryParse(String value) {
     try {
@@ -113,10 +119,10 @@ class Currency implements Comparable<Currency> {
     }
   }
 
-  ///
-  /// Parse string to Currency internal value in BigInt
-  /// Throws FormatException on format error
-  ///
+  //
+  // Parse string to Currency internal value in BigInt
+  // Throws FormatException on format error
+  //
   static BigInt _parse(String value) {
     value = value.trim();
     if (value == '') return BigInt.zero;
@@ -139,19 +145,19 @@ class Currency implements Comparable<Currency> {
     return rs;
   }
 
-  ///
-  /// Parse the integer part
-  /// Throws FormatException on format error
-  ///
+  //
+  // Parse the integer part
+  // Throws FormatException on format error
+  //
   static BigInt _parseInt(String value) {
     if (value == '') return BigInt.zero;
     return BigInt.parse(value);
   }
 
-  ///
-  /// Parse the decimal part
-  /// Throws FormatException on format error
-  ///
+  //
+  // Parse the decimal part
+  // Throws FormatException on format error
+  //
   static BigInt _parseDec(String value) {
     if (value == '') return BigInt.zero;
     if (value[0] == '-') throw FormatException("Invalid Parsing Currency");
@@ -172,7 +178,7 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// convert Currency to string
+  /// Convert Currency to string with full 4 decimal places
   ///
   @override
   String toString() {
@@ -276,7 +282,8 @@ class Currency implements Comparable<Currency> {
 
   ///
   /// Compares this object to another object
-  /// Returns (-1) if `this` is ordered before `other`, (+1) if `this` is ordered after `other`, and (0) if `this` and `other` are ordered together
+  ///
+  /// Returns (-1) if `this` is ordered before [other], returns (+1) if `this` is ordered after [other], and returns (0) if `this` and [other] are ordered together
   ///
   @override
   int compareTo(Currency other) {
@@ -300,7 +307,7 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// Returns the greatest `Currency` with an integer value no greater than `this`
+  /// Returns the greatest `Currency` having integer value no greater than `this`
   ///
   Currency floor() {
     BigInt MTP = BigInt.from(MULTIPLIER);
@@ -329,7 +336,9 @@ class Currency implements Comparable<Currency> {
   }
 
   ///
-  /// Return `lo` if `this` is smaller than `lo`, return `hi` if `this` is bigger than `hi`, otherwise return `this`
+  /// Make sure `this` is between [lo] and [hi]
+  ///
+  /// Return [lo] if `this` is smaller than [lo], return [hi] if `this` is bigger than [hi], otherwise return `this`
   ///
   Currency clamp(Currency lo, Currency hi) {
     if (lo._value > hi._value) {
