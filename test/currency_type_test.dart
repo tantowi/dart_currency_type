@@ -29,7 +29,7 @@
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import 'package:test/test.dart';
-import 'package:currency/currency.dart';
+import '../lib/currency_type.dart';
 
 void main() {
   test('test_constructor', test_constructor);

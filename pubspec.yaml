@@ -1,7 +1,7 @@
-name: currency
-description: Dart currency type for Dart and Flutter.
+name: currency_type
+description: Currency type for Dart and Flutter.
 version: 0.0.1
-homepage: https://github.com/tantowi/dart_currency
+homepage: https://github.com/tantowi/dart_currency_type
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
