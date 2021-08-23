@@ -28,11 +28,21 @@
 // OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
+///
+/// Library contains `Currency` type for Dart / Flutter
+///
+/// `Currency` is a large numeric type, with exactly four digit after the decimal point.
+///
+/// `Currency` type is appropriate for financial calculations that require large numbers of significant integral,
+/// up to four fractional digits, and minimize error caused by floating point calculation.
+///
 library currency_type;
 
 ///
-/// The `Currency` is a number type with four decimal places.
-/// The `Currency` is appropriate for financial calculations that require large numbers without round-off errors.
+/// `Currency` is a large numeric type, with exactly four digit after the decimal point.
+///
+/// `Currency` type is appropriate for financial calculations that require large numbers of significant integral,
+/// up to four fractional digits, and minimize error caused by floating point calculation.
 ///
 class Currency implements Comparable<Currency> {
   ///
@@ -45,9 +55,9 @@ class Currency implements Comparable<Currency> {
   //
   static const _MULTIPLIER = 10000;
 
-  ///
-  /// Internal value of the currency and is immutable
-  ///
+  //
+  // Internal value of the currency and is immutable
+  //
   late final BigInt _value;
 
   ///
@@ -132,15 +142,17 @@ class Currency implements Comparable<Currency> {
       return BigInt.zero;
     }
 
+    var MTP = BigInt.from(_MULTIPLIER);
+
     if (av.length == 1) {
-      return BigInt.parse(av[0]) * BigInt.from(_MULTIPLIER);
+      return BigInt.parse(av[0]) * MTP;
     }
 
     // av.length==2
     var dint = _parseInt(av[0]);
     var ddec = _parseDec(av[1]);
 
-    BigInt rs = dint * BigInt.from(_MULTIPLIER) + (dint >= BigInt.zero ? ddec : -ddec);
+    var rs = dint * MTP + (dint >= BigInt.zero ? ddec : -ddec);
     //print("_parse: $value  ->  int:$dint  dec:$ddec  ->  $rs");
     return rs;
   }
@@ -358,6 +370,9 @@ class Currency implements Comparable<Currency> {
     return Currency._fromValue(this._value);
   }
 
+  ///
+  /// Retuns internal value of `this`
+  ///
   BigInt getValue() {
     return this._value;
   }
