@@ -7,4 +7,11 @@
 
 - Update documentation
 
+## 0.0.3
+
+- Add Example
+- Fix documentation
+
+
+
 
