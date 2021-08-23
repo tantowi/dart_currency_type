@@ -1,14 +1,161 @@
-# dart_currency
+# currency_type
 
-A new Flutter package project.
+The Currency type is a large numeric type, with exactly four digit after the decimal point. 
+Internally, Currency using integer calculation to minimizes rounding errors.
 
-## Getting Started
+The Currency type is appropriate for financial calculations that require large numbers of significant integral, up to four fractional digits, 
+and minimize error caused by floating point calculation.
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+<br><br>
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+
+## Why Using Currency ?
+
+<br>
+Using Double
+
+```dart
+func main() {
+  var a = 0.7;
+  var b = 0.49;
+  var c = aa * aa;
+
+  print('Result : $c');
+
+  if (c == b) {
+    print("Yes it's equal");
+  } else {
+    print("No it's not equal");
+  }
+}
+```
+
+```
+Result : 0.48999999999999994
+No it's not equal
+```
+
+
+<br>
+Using Currency
+
+```dart
+func main() {
+  var a = Currency.parse('0.7');
+  var b = Currency.parse('0.49');
+  var c = a * a;
+
+  print('Result : $c');
+
+  if (c == b) {
+    print("Yes it's equal");
+  } else {
+    print("No it's not equal");
+  }
+}
+```
+
+
+```
+Result : 0.4900
+Yes it's equal
+```
+
+<br>
+
+## How To Use
+<br>
+
+To use `currency_type` module, you have to add to your project by run following command: 
+
+```shell
+$ dart pub add currency_type 
+```
+
+or add directly in `pubspec.yaml`
+
+```yaml
+dependencies: 
+  currency_type: ^0.0.2
+```
+
+and then import to your dart file
+
+```dart
+import 'package:currency_type/currency_type.dart';
+```
+<br>
+
+## Instantiate
+
+<br>
+You can instantiate Currency with 3 ways: <br><br>
+
+
+   1. Create zero value
+
+      ```dart
+      var a = Currency();
+      ```
+
+   2. Import from `num` varible or `num` literal :
+
+      ```dart
+      var b = 1234;
+      var c = 1234.56;
+
+      var d = Currency.from(b);
+      var e = Currency.from(c);
+
+      var f = Currency.from(1234);
+      var g = Currency.from(1234.56);
+      ```
+
+   2. Parsing from string :
+
+      ```dart
+      var f = Currency.parse('1234567890');
+      var g = Currency.parse('1234567890123456.1234');
+      ```
+
+      
+   `Currency` can store very large number beyond `double`, and the only way to instantiate is by parsing from string.
+
+<br>
+
+   ## Operation
+
+<br>
+   You can do arithmetic operation on `Currency` like addition, subtraction, multiplication, or division
+
+   ```dart
+   var h = d + e; 
+   var i = g - h;
+   var j = d * e; 
+   var k = g / f; 
+
+   var l = (d + e) * g;
+   ```
+
+   `Currency` can also be compared to other `Currency`
+
+   ```dart
+   if (k == l) {
+      ...
+   }
+   
+
+   if (h > Currency.from(100)) {
+      ...
+   }
+   ```
+
+
+<br><br><br>
+
+
+
+<small>
+Copyright (c) 2021, Mohamad Tantowi Mustofa (tantowi.com)<br>
+Licensed under BSD 3-Clause license.
+</small>
