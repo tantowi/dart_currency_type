@@ -36,14 +36,14 @@ library currency_type;
 ///
 class Currency implements Comparable<Currency> {
   ///
-  /// Number of zero stored in `Currency`
+  /// Number of decimal point stored in `Currency`
   ///
   static const SCALE = 4;
 
-  ///
-  /// MULTIPLIER = 10^SCALE
-  ///
-  static const MULTIPLIER = 10000;
+  //
+  // _MULTIPLIER = 10^SCALE
+  //
+  static const _MULTIPLIER = 10000;
 
   ///
   /// Internal value of the currency and is immutable
@@ -72,7 +72,7 @@ class Currency implements Comparable<Currency> {
   Currency.from(num value) {
     if (value is int) {
       //print('Currency.from (int): $value');
-      _value = BigInt.from(value) * BigInt.from(MULTIPLIER);
+      _value = BigInt.from(value) * BigInt.from(_MULTIPLIER);
       return;
     }
 
@@ -90,7 +90,7 @@ class Currency implements Comparable<Currency> {
   /// Create `Currency` from BigInt value
   ///
   Currency.fromBigInt(BigInt value) {
-    _value = value * BigInt.from(MULTIPLIER);
+    _value = value * BigInt.from(_MULTIPLIER);
   }
 
   ///
@@ -133,14 +133,14 @@ class Currency implements Comparable<Currency> {
     }
 
     if (av.length == 1) {
-      return BigInt.parse(av[0]) * BigInt.from(MULTIPLIER);
+      return BigInt.parse(av[0]) * BigInt.from(_MULTIPLIER);
     }
 
     // av.length==2
     var dint = _parseInt(av[0]);
     var ddec = _parseDec(av[1]);
 
-    BigInt rs = dint * BigInt.from(MULTIPLIER) + (dint >= BigInt.zero ? ddec : -ddec);
+    BigInt rs = dint * BigInt.from(_MULTIPLIER) + (dint >= BigInt.zero ? ddec : -ddec);
     //print("_parse: $value  ->  int:$dint  dec:$ddec  ->  $rs");
     return rs;
   }
@@ -216,7 +216,7 @@ class Currency implements Comparable<Currency> {
     //var M = pow(10, SCALE);
 
     BigInt x = _value * other._value;
-    x = _roundx(x, MULTIPLIER);
+    x = _roundx(x, _MULTIPLIER);
     return new Currency._fromValue(x);
   }
 
@@ -236,7 +236,7 @@ class Currency implements Comparable<Currency> {
   /// Operator /
   ///
   Currency operator /(Currency other) {
-    BigInt MTP10 = BigInt.from(MULTIPLIER * 10);
+    BigInt MTP10 = BigInt.from(_MULTIPLIER * 10);
     BigInt x = (_value * MTP10) ~/ other._value;
     x = _roundx(x, 10);
     return new Currency._fromValue(x);
@@ -310,7 +310,7 @@ class Currency implements Comparable<Currency> {
   /// Returns the greatest `Currency` having integer value no greater than `this`
   ///
   Currency floor() {
-    BigInt MTP = BigInt.from(MULTIPLIER);
+    BigInt MTP = BigInt.from(_MULTIPLIER);
     return Currency._fromValue(_value * MTP);
   }
 
@@ -318,7 +318,7 @@ class Currency implements Comparable<Currency> {
   /// Returns the least `Currency` having integer components no smaller than `this`
   ///
   Currency ceil() {
-    BigInt MTP = BigInt.from(MULTIPLIER);
+    BigInt MTP = BigInt.from(_MULTIPLIER);
     if (_value.remainder(MTP) == 0) {
       return Currency._fromValue(_value);
     }
@@ -331,7 +331,7 @@ class Currency implements Comparable<Currency> {
   /// Returns the integer closest to `this`
   ///
   Currency round() {
-    BigInt x = _roundx(_value, MULTIPLIER);
+    BigInt x = _roundx(_value, _MULTIPLIER);
     return new Currency._fromValue(x);
   }
 
