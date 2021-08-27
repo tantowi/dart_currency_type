@@ -1,5 +1,9 @@
 # currency_type
 
+![Version](https://img.shields.io/github/v/tag/tantowi/dart_currency_type?label=version)
+
+
+
 The Currency type is a large numeric type, with exactly four digit after the decimal point. 
 Internally, Currency using integer calculation to minimizes rounding errors.
 
