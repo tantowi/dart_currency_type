@@ -5,6 +5,8 @@ void main(List<String> arguments) {
   print('');
   usingCurrency();
   print('');
+  bigNumbers();
+  print('');
 }
 
 void usingDouble() {
@@ -35,4 +37,11 @@ void usingCurrency() {
   } else {
     print("Not Equal");
   }
+}
+
+void bigNumbers() {
+  var a = 12345678901234567.1234;
+  var b = Currency.parse('12345678901234567.1234');
+  print("Big Double  : $a");
+  print("Big Currency: $b");
 }
