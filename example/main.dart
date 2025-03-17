@@ -1,34 +1,38 @@
 import 'package:currency_type/currency_type.dart';
 
 void main(List<String> arguments) {
+  usingDouble();
   print('');
-  print('Using Currency:');
+  usingCurrency();
+  print('');
+}
 
+void usingDouble() {
+  var a = 0.7;
+  var b = 0.49;
+  var c = a * a;
+
+  print('Using Double');
+  print('$a * $a = $c');
+
+  if (c == b) {
+    print("Equal");
+  } else {
+    print("Not Equal");
+  }
+}
+
+void usingCurrency() {
   var a = Currency.parse('0.7');
   var b = Currency.parse('0.49');
   var c = a * a;
 
-  print('Result : $c');
+  print('Using Currency');
+  print('$a * $a = $c');
 
   if (c == b) {
-    print("Yes it's equal");
+    print("Equal");
   } else {
-    print("No it's not equal");
-  }
-
-  print('');
-  print('Using Float');
-
-  var aa = 0.7;
-  var bb = 0.49;
-  var cc = aa * aa;
-  var dd = (cc == 0.49);
-
-  print('Result : $cc');
-
-  if (cc == bb) {
-    print("Yes it's equal");
-  } else {
-    print("No it's not equal");
+    print("Not Equal");
   }
 }
