@@ -142,17 +142,17 @@ class Currency implements Comparable<Currency> {
       return BigInt.zero;
     }
 
-    var MTP = BigInt.from(_MULTIPLIER);
+    var mtp = BigInt.from(_MULTIPLIER);
 
     if (av.length == 1) {
-      return BigInt.parse(av[0]) * MTP;
+      return BigInt.parse(av[0]) * mtp;
     }
 
     // av.length==2
     var dint = _parseInt(av[0]);
     var ddec = _parseDec(av[1]);
 
-    var rs = dint * MTP + (dint >= BigInt.zero ? ddec : -ddec);
+    var rs = dint * mtp + (dint >= BigInt.zero ? ddec : -ddec);
     //print("_parse: $value  ->  int:$dint  dec:$ddec  ->  $rs");
     return rs;
   }
@@ -240,20 +240,20 @@ class Currency implements Comparable<Currency> {
   // _roundx
   //
   BigInt _roundx(BigInt value, int rounder) {
-    BigInt MTP = BigInt.from(rounder);
-    BigInt HMTP = BigInt.from(rounder / 2);
-    if (value.remainder(MTP) >= HMTP) {
-      return (value ~/ MTP) + BigInt.from(1);
+    BigInt mtp = BigInt.from(rounder);
+    BigInt hmtp = BigInt.from(rounder / 2);
+    if (value.remainder(mtp) >= hmtp) {
+      return (value ~/ mtp) + BigInt.from(1);
     }
-    return value ~/ MTP;
+    return value ~/ mtp;
   }
 
   ///
   /// Operator /
   ///
   Currency operator /(Currency other) {
-    BigInt MTP10 = BigInt.from(_MULTIPLIER * 10);
-    BigInt x = (_value * MTP10) ~/ other._value;
+    BigInt mtp10 = BigInt.from(_MULTIPLIER * 10);
+    BigInt x = (_value * mtp10) ~/ other._value;
     x = _roundx(x, 10);
     return new Currency._fromValue(x);
   }
@@ -326,20 +326,20 @@ class Currency implements Comparable<Currency> {
   /// Returns the greatest `Currency` having integer value no greater than `this`
   ///
   Currency floor() {
-    BigInt MTP = BigInt.from(_MULTIPLIER);
-    return Currency._fromValue(_value * MTP);
+    BigInt mtp = BigInt.from(_MULTIPLIER);
+    return Currency._fromValue(_value * mtp);
   }
 
   ///
   /// Returns the least `Currency` having integer components no smaller than `this`
   ///
   Currency ceil() {
-    BigInt MTP = BigInt.from(_MULTIPLIER);
-    if (_value.remainder(MTP) == 0) {
+    BigInt mtp = BigInt.from(_MULTIPLIER);
+    if (_value.remainder(mtp) == 0) {
       return Currency._fromValue(_value);
     }
 
-    BigInt x = ((_value ~/ MTP) + BigInt.from(1)) * MTP;
+    BigInt x = ((_value ~/ mtp) + BigInt.from(1)) * mtp;
     return Currency._fromValue(x);
   }
 
