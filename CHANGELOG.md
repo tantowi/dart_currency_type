@@ -2,7 +2,6 @@
 
 - Initial release
 
-
 ## 0.0.2
 
 - Update documentation
@@ -11,6 +10,11 @@
 
 - Add Example
 - Fix documentation
+
+## 1.0.0
+
+- Fix documentation
+- Fix linting error
 
 
 
