@@ -22,7 +22,7 @@ Using Double
 func main() {
   var a = 0.7;
   var b = 0.49;
-  var c = aa * aa;
+  var c = a * a;
 
   print('Result : $c');
 
@@ -160,6 +160,6 @@ You can instantiate Currency with 3 ways: <br><br>
 
 
 <small>
-Copyright (c) 2021, Mohamad Tantowi Mustofa (tantowi.com)<br>
+Copyright (c) 2021-2025, Mohamad Tantowi Mustofa (tantowi.com)<br>
 Licensed under BSD 3-Clause license.
 </small>
