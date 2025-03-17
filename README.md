@@ -24,19 +24,19 @@ func main() {
   var b = 0.49;
   var c = a * a;
 
-  print('Result : $c');
+  print('$a * $a = $c');
 
   if (c == b) {
-    print("Yes it's equal");
+    print("Equal");
   } else {
-    print("No it's not equal");
+    print("Not Equal");
   }
 }
 ```
 
 ```
-Result : 0.48999999999999994
-No it's not equal
+0.7 * 0.7 = 0.48999999999999994
+Not Equal
 ```
 
 
@@ -49,20 +49,20 @@ func main() {
   var b = Currency.parse('0.49');
   var c = a * a;
 
-  print('Result : $c');
+  print('$a * $a = $c');
 
   if (c == b) {
-    print("Yes it's equal");
+    print("Equal");
   } else {
-    print("No it's not equal");
+    print("Not Equal");
   }
 }
 ```
 
 
 ```
-Result : 0.4900
-Yes it's equal
+0.7000 * 0.7000 = 0.4900
+Equal
 ```
 
 <br>
