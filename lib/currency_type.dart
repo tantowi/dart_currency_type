@@ -175,7 +175,9 @@ class Currency implements Comparable<Currency> {
     if (value[0] == '-') throw FormatException("Invalid Parsing Currency");
 
     if (value.length <= SCALE) {
-      while (value.length < SCALE) value = value + '0';
+      while (value.length < SCALE) {
+        value = value + '0';
+      }
       return BigInt.parse(value);
     }
 
@@ -196,7 +198,9 @@ class Currency implements Comparable<Currency> {
   String toString() {
     var st = _value.toString();
     if (st.length <= SCALE) {
-      while (st.length < SCALE) st = '0' + st;
+      while (st.length < SCALE) {
+        st = '0' + st;
+      }
       return '0.' + st;
     }
 
