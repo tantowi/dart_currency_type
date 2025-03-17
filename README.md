@@ -10,12 +10,16 @@ Internally, Currency using integer calculation to minimizes rounding errors.
 The Currency type is appropriate for financial calculations that require large numbers of significant integral, up to four fractional digits, 
 and minimize error caused by floating point calculation.
 
-<br><br>
-
+<br>
 
 ## Why Using Currency ?
 
 <br>
+
+`Currency` prevent rounding error from floating point calculation. `Currency` also make comparisan more accurate and predictable.
+
+<br>
+
 Using Double
 
 ```dart
@@ -39,8 +43,6 @@ func main() {
 Not Equal
 ```
 
-
-<br>
 Using Currency
 
 ```dart
@@ -68,6 +70,7 @@ Equal
 <br>
 
 ## How To Use
+
 <br>
 
 To use `currency_type` module, you have to add to your project by run following command: 
@@ -80,7 +83,7 @@ or add directly in `pubspec.yaml`
 
 ```yaml
 dependencies: 
-  currency_type: ^0.0.2
+  currency_type: ^1.0.0
 ```
 
 and then import to your dart file
@@ -88,12 +91,14 @@ and then import to your dart file
 ```dart
 import 'package:currency_type/currency_type.dart';
 ```
-<br>
-
-## Instantiate
 
 <br>
-You can instantiate Currency with 3 ways: <br><br>
+
+## Variable declaration 
+
+<br>
+
+You can declare `Currency` variable in 3 ways:
 
 
    1. Create zero value
@@ -102,7 +107,7 @@ You can instantiate Currency with 3 ways: <br><br>
       var a = Currency();
       ```
 
-   2. Import from `num` varible or `num` literal :
+   2. Convert from `numbers` variable or literal :
 
       ```dart
       var b = 1234;
@@ -115,22 +120,20 @@ You can instantiate Currency with 3 ways: <br><br>
       var g = Currency.from(1234.56);
       ```
 
-   2. Parsing from string :
+   3. Parsing from `string` :
 
       ```dart
       var f = Currency.parse('1234567890');
       var g = Currency.parse('1234567890123456.1234');
       ```
 
-      
-   `Currency` can store very large number beyond `double`, and the only way to instantiate is by parsing from string.
+<br>
+
+## Operations
 
 <br>
 
-   ## Operation
-
-<br>
-   You can do arithmetic operation on `Currency` like addition, subtraction, multiplication, or division
+You can do arithmetic operation on `Currency` like addition, subtraction, multiplication, or division.
 
    ```dart
    var h = d + e; 
@@ -141,7 +144,7 @@ You can instantiate Currency with 3 ways: <br><br>
    var l = (d + e) * g;
    ```
 
-   `Currency` can also be compared to other `Currency`
+`Currency` can also be compared to other `Currency`
 
    ```dart
    if (k == l) {
@@ -154,9 +157,30 @@ You can instantiate Currency with 3 ways: <br><br>
    }
    ```
 
+<br>
+
+## Big Numbers
+
+<br>
+
+Unlike `double`, `Currency` can store very big number precisely.
+
+```dart
+func main() {
+  var a = 12345678901234567.1234;
+  print("Big Double   : $a");
+
+  var b = Currency.parse('12345678901234567.1234');
+  print("Big Currency : $b");
+}
+```
+
+```
+Big Double   : 12345678901234568.0
+Big Currency : 12345678901234567.1234
+```
 
 <br><br><br>
-
 
 
 <small>
